@@ -98,11 +98,25 @@ Vous pouvez réécrire ici toutes les fonctions qui sont a personnaliser pour ce
  *  getWidgetEntityContent
  *  getWidgetQueryContent
 
+## La configuration du widget
+
+Un widget utilise un fichier services.yml
+
+Ce fichier contient les services permettant d'utiliser le manager/form/entité du widget.
+
+Les noms de ces services sont conventionnés. 
+
+Par exemple:
+
+widget_XXXXX_manager 
+victoire.widget.form.XXXX
+
+où XXXX est le nom du widget.
 
 # Le sitemap
 
 Les liens du sitemap en bleue clair sont des liens générés automatiquement.
 
-Ils concernent des businessEntityTemplate.
+Ils concernent des businessEntityTemplates.
 
 
