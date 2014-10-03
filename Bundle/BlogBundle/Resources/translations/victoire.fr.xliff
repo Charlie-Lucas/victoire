@@ -1,91 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2013-11-28T17:11:45Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
-    <header>
-      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
-      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
-    </header>
-    <body>
-      <trans-unit resname="form.widget.tab.article.label">
-        <source>form.widget.tab.article.label</source>
-        <target state="new">Article</target>
-      </trans-unit>
-      <trans-unit resname="entity_proxy.form.article.label">
-        <source>entity_proxy.form.article.label</source>
-        <target>Article</target>
-      </trans-unit>
-      <trans-unit id="9b39444d8d4d52ee8371bd147a45392b465249a8" resname="menu.blog">
-        <source>menu.blog</source>
-        <target>Blog</target>
-      </trans-unit>
-      <trans-unit id="44ee3ff9b926d8e0fe6e8e356600ad5c77166029" resname="menu.blog.article.new">
-        <source>menu.blog.article.new</source>
-        <target><![CDATA[<i class="vic-menuImg vic-menuImg-new"></i> Nouvel article]]></target>
-      </trans-unit>
-      <trans-unit resname="victoire_blog.index.title">
-        <source>victoire_blog.index.title</source>
-        <target>Gestion des blogs</target>
-      </trans-unit>
-      <trans-unit resname="menu.blog.new">
-        <source>menu.blog.new</source>
-        <target><![CDATA[<i class="vic-menuImg vic-menuImg-new"></i> Nouveau blog]]></target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.button.new.label">
-        <source>modal.blog.button.new.label</source>
-        <target><![CDATA[<i class="fa fa-check-circle"></i> Créer un nouveau blog]]></target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.list.empty.notice">
-        <source>modal.blog.list.empty.notice</source>
-        <target>Vous n'avez pas encore créé de blog. C'est le moment :)</target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.list.title">
-        <source>modal.blog.list.title</source>
-        <target>Liste des blogs</target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.list.articlesList.title">
-        <source>modal.blog.list.articlesList.title</source>
-        <target>Liste des articles</target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.list.articlesList.empty.notice">
-        <source>modal.blog.list.articlesList.empty.notice</source>
-        <target><![CDATA[Vous n'avez pas encore créé d'article dans ce blog. C'est le moment :)<br/><br/><a href="%creationLink%" data-toggle="vic-modal" class="vic-btn vic-btn-primary"><i class="fa fa-plus"></i> Créer un article maintenant.</a>]]></target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.button.new.title">
-        <source>modal.blog.button.new.title</source>
-        <target>Créer un nouveau blog</target>
-      </trans-unit>
-      <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5062" resname="menu.blog.article.settings">
-          <source>menu.blog.article.settings</source>
-          <target><![CDATA[<i class="vic-menuImg vic-menuImg-gear"></i> Paramètres de l'article]]></target>
-      </trans-unit>
-      <trans-unit resname="menu.blog.settings">
-          <source>menu.blog.settings</source>
-          <target><![CDATA[<i class="vic-menuImg vic-menuImg-gear"></i> Paramètres du blog]]></target>
-      </trans-unit>
-      <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5063" resname="widget_filter.category_filter">
-        <source>widget_filter.category_filter</source>
-        <target>Catégories</target>
-      </trans-unit>
-      <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5063" resname="widget_filter.tag_filter">
-        <source>widget_filter.tag_filter</source>
-        <target>Etiquettes</target>
-      </trans-unit>
-      <trans-unit resname="modal.blog.new.title">
-        <source>modal.blog.new.title</source>
-        <target>Créer un nouveau blog</target>
-      </trans-unit>
-      <trans-unit resname="modal.article.new.title">
-        <source>modal.article.new.title</source>
-        <target>Créer un nouvel article</target>
-      </trans-unit>
-      <trans-unit resname="modal.form.article.settings.title">
-        <source>modal.form.article.settings.title</source>
-        <target><![CDATA[Paramètres de l'article <strong>%articleName%</strong>]]></target>
-      </trans-unit>
-      <trans-unit resname="modal.form.blog.settings.title">
-        <source>modal.form.blog.settings.title</source>
-        <target><![CDATA[Paramètres du blog <strong>%blogName%</strong>]]></target>
-      </trans-unit>
-    </body>
-  </file>
+    <file date="2013-11-28T17:11:45Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+        <header>
+            <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+            <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+        </header>
+
+        <body>
+            <trans-unit resname="form.widget.tab.article.label">
+                <source>form.widget.tab.article.label</source>
+                <target state="new">Article</target>
+            </trans-unit>
+
+            <trans-unit resname="entity_proxy.form.article.label">
+                <source>entity_proxy.form.article.label</source>
+                <target>Article</target>
+            </trans-unit>
+
+            <trans-unit id="9b39444d8d4d52ee8371bd147a45392b465249a8" resname="menu.blog">
+                <source>menu.blog</source>
+                <target>Blog</target>
+            </trans-unit>
+
+            <trans-unit id="44ee3ff9b926d8e0fe6e8e356600ad5c77166029" resname="menu.blog.article.new">
+                <source>menu.blog.article.new</source>
+                <target><![CDATA[<i class="vic-menuImg vic-menuImg-new"></i> Nouvel article]]></target>
+            </trans-unit>
+
+            <trans-unit resname="victoire_blog.index.title">
+                <source>victoire_blog.index.title</source>
+                <target>Gestion des blogs</target>
+            </trans-unit>
+
+            <trans-unit resname="menu.blog.new">
+                <source>menu.blog.new</source>
+                <target><![CDATA[<i class="vic-menuImg vic-menuImg-new"></i> Nouveau blog]]></target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.button.new.label">
+                <source>modal.blog.button.new.label</source>
+                <target><![CDATA[<i class="fa fa-check-circle"></i> Créer un nouveau blog]]></target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.empty.notice">
+                <source>modal.blog.list.empty.notice</source>
+                <target>Vous n'avez pas encore créé de blog. C'est le moment :)</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.title">
+                <source>modal.blog.list.title</source>
+                <target>Liste des blogs</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.title">
+                <source>modal.blog.list.articlesList.title</source>
+                <target>Liste des articles</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.empty.notice">
+                <source>modal.blog.list.articlesList.empty.notice</source>
+                <target><![CDATA[Vous n'avez pas encore créé d'article dans ce blog. C'est le moment :)<br/><br/><a href="%creationLink%" data-toggle="vic-modal" class="vic-btn vic-btn-primary"><i class="fa fa-plus"></i> Créer un article maintenant.</a>]]></target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.button.new.title">
+                <source>modal.blog.button.new.title</source>
+                <target>Créer un nouveau blog</target>
+            </trans-unit>
+
+            <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5062" resname="menu.blog.article.settings">
+                <source>menu.blog.article.settings</source>
+                <target><![CDATA[<i class="vic-menuImg vic-menuImg-gear"></i> Paramètres de l'article]]></target>
+            </trans-unit>
+
+            <trans-unit resname="menu.blog.settings">
+                <source>menu.blog.settings</source>
+                <target><![CDATA[<i class="vic-menuImg vic-menuImg-gear"></i> Paramètres du blog]]></target>
+            </trans-unit>
+
+            <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5063" resname="widget_filter.category_filter">
+                <source>widget_filter.category_filter</source>
+                <target>Catégories</target>
+            </trans-unit>
+
+            <trans-unit id="604de4ede156d22c87184505b9794ba2ad9c5063" resname="widget_filter.tag_filter">
+                <source>widget_filter.tag_filter</source>
+                <target>Etiquettes</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.new.title">
+                <source>modal.blog.new.title</source>
+                <target>Créer un nouveau blog</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.article.new.title">
+                <source>modal.article.new.title</source>
+                <target>Créer un nouvel article</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.form.article.settings.title">
+                <source>modal.form.article.settings.title</source>
+                <target><![CDATA[Paramètres de l'article <strong>%articleName%</strong>]]></target>
+            </trans-unit>
+
+            <trans-unit resname="modal.form.blog.settings.title">
+                <source>modal.form.blog.settings.title</source>
+                <target><![CDATA[Paramètres du blog <strong>%blogName%</strong>]]></target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articles.label">
+                <source>modal.blog.list.articles.label</source>
+                <target>Articles</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.category.label">
+                <source>modal.blog.list.category.label</source>
+                <target>Catégories</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.label">
+                <source>modal.blog.list.settings.label</source>
+                <target>Paramètres</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.id">
+                <source>modal.blog.list.articlesList.id</source>
+                <target>ID</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.articleTitle">
+                <source>modal.blog.list.articlesList.articleTitle</source>
+                <target>Titre</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.publishedAt">
+                <source>modal.blog.list.articlesList.publishedAt</source>
+                <target>Date de publication</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.category">
+                <source>modal.blog.list.articlesList.category</source>
+                <target>Catégories</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.actions">
+                <source>modal.blog.list.articlesList.actions</source>
+                <target>Actions</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.noCategory">
+                <source>modal.blog.list.articlesList.noCategory</source>
+                <target>Aucune catégories</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.articlesList.article.label">
+                <source>modal.blog.list.articlesList.article.label</source>
+                <target>Aucune catégories</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.blogName.label">
+                <source>modal.blog.list.settings.blogName.label</source>
+                <target>Nom du Blog</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.status.label">
+                <source>modal.blog.list.settings.status.label</source>
+                <target>Statut</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.parent.label">
+                <source>modal.blog.list.settings.parent.label</source>
+                <target>Page parent</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.layout.label">
+                <source>modal.blog.list.settings.layout.label</source>
+                <target>Modèle à utiliser</target>
+            </trans-unit>
+
+            <trans-unit resname="modal.blog.list.settings.url.label">
+                <source>modal.blog.list.settings.url.label</source>
+                <target>URL</target>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

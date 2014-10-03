@@ -1,0 +1,69 @@
+  ///////////////
+ // Vic Table //
+///////////////
+
+// Requirements
+///////////////
+
+/**
+ * No vendors or defined variables are required for this bricks.
+**/
+
+
+// Resources
+////////////
+
+@import 'parameters/module';
+@import 'parameters/theme';
+
+
+
+// Style
+////////
+
+.vic-table-article-list {
+    margin-bottom: 0;
+
+    &,
+    * {
+        border-color: #c9c9c9 !important;
+    }
+
+    > thead {
+        > tr {
+            > th {
+                border-bottom-width: 1px;
+            }
+        }
+    }
+
+    > thead,
+    > tbody,
+    > tfoot {
+        tr {
+            th,
+            td {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.vic-checkbox-cell {
+    vertical-align: middle !important;
+
+    .customCheckbox {
+        + label {
+            vertical-align: middle;
+        }
+    }
+}
+
+.vic-highlight-cell {
+    background-color: #fafafa;
+    color: #b4b4b4;
+}
+
+.vic-table-article-pager {
+    margin-top: 75px;
+}

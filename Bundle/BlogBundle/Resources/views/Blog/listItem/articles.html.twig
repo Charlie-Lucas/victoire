@@ -1,0 +1,120 @@
+{% if blog.articles|length %}
+    <table class="vic-table vic-table-bordered vic-table-article-list vic-checkbox-cell">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    <input class="customCheckbox" name="1" type="checkbox" data-dev="static">
+                    <label class="vic-empty-label" for="1"></label>
+                </th>
+
+                <th class="text-center vic-highlight-cell">
+                    {{ 'modal.blog.list.articlesList.id'|trans({}, 'victoire') }}
+
+                    <a href="#">
+                        <img src="{{ asset('bundles/victoirecore/images/vic-vertical-arrows.png') }}">
+                    </a>
+
+                </th>
+
+                <th class="text-center">
+                    {{ 'modal.blog.list.articlesList.articleTitle'|trans({}, 'victoire') }}
+
+                    <a href="#">
+                        <img src="{{ asset('bundles/victoirecore/images/vic-vertical-arrows.png') }}">
+                    </a>
+                </th>
+
+                <th class="text-center">
+                    {{ 'modal.blog.list.articlesList.publishedAt'|trans({}, 'victoire') }}
+
+                    <a href="#">
+                        <img src="{{ asset('bundles/victoirecore/images/vic-vertical-arrows.png') }}">
+                    </a>
+                </th>
+
+                <th class="text-center">
+                    {{ 'modal.blog.list.articlesList.category'|trans({}, 'victoire') }}
+
+                    <a href="#">
+                        <img src="{{ asset('bundles/victoirecore/images/vic-vertical-arrows.png') }}">
+                    </a>
+                </th>
+
+                <th class="text-center">
+                    {{ 'modal.blog.list.articlesList.actions'|trans({}, 'victoire') }}
+
+                    <a href="#">
+                        <img src="{{ asset('bundles/victoirecore/images/vic-vertical-arrows.png') }}">
+                    </a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for article in blog.articles %}
+                <tr>
+                    <td class="text-center vic-checkbox-cell">
+                        <input class="customCheckbox" name="1" type="checkbox" data-dev="static">
+                        <label class="vic-empty-label" for="1"></label>
+                    </td>
+
+                    <td class="vic-highlight-cell text-center">
+                        {{ 'modal.blog.list.articlesList.article.label'|trans({}, 'victoire') }} #{{ article.id }}
+                    </td>
+
+                    <td>
+                        {{ article.name }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ article.publishedAt|date("m/d/Y") }}
+                    </td>
+
+                    <td>
+                        {% if article.category %}
+                            {{ article.category }}
+                        {% else %}
+                            {{ 'modal.blog.list.articlesList.noCategory'|trans({}, 'victoire') }}
+                        {% endif %}
+                    </td>
+
+                    <td class="text-center">
+                        <a href="{{ path('victoire_blog_article_settings', {'id' : article.id}) }}" class="vic-btn vic-btn-default vic-btn-sm">
+                            <i class="fa fa-cog"></i>
+                        </a>
+
+                        <a href="{{ path('victoire_core_page_show', {'url' : article.url}) }}" class="vic-btn vic-btn-default vic-btn-sm">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <div class="text-center vic-table-article-pager">
+        <div class="vic-btn-group">
+            <a href="#" class="vic-btn vic-btn-success" data-dev="static">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a href="#" class="vic-btn vic-btn-default" data-dev="static">1</a>
+
+            <a href="#" class="vic-btn vic-btn-default" data-dev="static">2</a>
+
+            <a href="#" class="vic-btn vic-btn-default" data-dev="static">3</a>
+
+            <a href="#" class="vic-btn vic-btn-default" data-dev="static">4</a>
+
+            <a href="#" class="vic-btn vic-btn-success" data-dev="static">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+{% else %}
+    <div class="vic-alert vic-alert-info">
+        {{ 'modal.blog.list.articlesList.empty.notice'|trans({'%creationLink%' : path('victoire_blog_article_newBlogArticle', {'id' : blog.id})}, 'victoire')|raw }}
+    </div>
+{% endif %}

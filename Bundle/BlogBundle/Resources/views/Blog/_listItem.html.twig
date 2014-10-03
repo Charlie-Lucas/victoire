@@ -1,57 +1,75 @@
-<div class="vic-accordion-group">
-    <div class="vic-accordion-heading">
-        <div class="vic-row">
-            <div class="vic-col-md-12">
-                <a class="vic-accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                    {{ blog.name }}
-                </a>
-                <a data-toggle="vic-modal" href="{{ path('victoire_blog_settings', {'id' : blog.id}) }}">
-                    <i class="fa fa-cog"></i>
-                </a>
-                <a href="{{ path('victoire_core_page_show', {'url' : blog.url}) }}">
-                    <i class="fa fa-external-link-square"></i>
-                </a>
-            </div>
-            {% if blog.seo and blog.seo.metaDescription %}
-            <div class="vic-col-md-12">
-                {{ blog.seo.metaDescription }}
-            </div>
-            {% endif %}
+<div class="vic-panel vic-panel-default">
+    <div class="vic-panel-heading">
+        <h4 class="vic-panel-title">
+            <a data-toggle="collapse" data-parent="#accordion-blog" href="#collapse-{{ loop.first }}">
+                {{ blog.name }}
+            </a>
+        </h4>
+
+        <div class="vic-pull-right vic-panel-heading-btns">
+            <a class="vic-btn vic-btn-default vic-btn-sm" data-toggle="collapse" data-parent="#accordion-blog" href="#collapse-{{ loop.first }}">
+                <i class="fa fa-list"></i>
+            </a>
+
+            {#
+            <a class="vic-btn vic-btn-default vic-btn-sm" data-toggle="vic-modal" href="{{ path('victoire_blog_settings', {'id' : blog.id}) }}">
+                <i class="fa fa-cog"></i>
+            </a>
+            #}
+
+            <a class="vic-btn vic-btn-default vic-btn-sm" href="{{ path('victoire_core_page_show', {'url' : blog.url}) }}">
+                <i class="fa fa-eye"></i>
+            </a>
+
+            <a class="vic-btn vic-btn-danger vic-btn-sm" href="#" data-dev="static">
+                <i class="fa fa-trash-o"></i>
+            </a>
         </div>
     </div>
-    <div id="collapseOne" class="vic-accordion-body vic-collapse{% if loop.first %} vic-in{% endif %}" style="margin-left:15px">
-        <div class="vic-accordion-inner">
-        <h3 class="vic-h3">{{ 'modal.blog.list.articlesList.title'|trans({}, 'victoire') }}</h3>
-        {% if blog.articles|length %}
-            <ul class="vic-list-unstyled">
-                {% for article in blog.articles %}
-                    <li>
-                        <div class="vic-row">
-                            <div class="vic-col-md-12">
-                                <a href="{{ path('victoire_core_page_show', {'url' : article.url}) }}">
-                                    {{ article.name }}
-                                </a>&nbsp;
-                                <a data-toggle="vic-modal" href="{{ path('victoire_blog_article_settings', {'id' : article.id}) }}">
-                                    <i class="fa fa-cog"></i>
-                                </a>&nbsp;
-                                <a href="{{ path('victoire_core_page_show', {'url' : article.url}) }}">
-                                    <i class="fa fa-external-link-square"></i>
-                                </a>
-                            </div>
-                            {% if article.seo and article.seo.metaDescription %}
-                            <div class="vic-col-md-12">
-                                {{ article.seo.metaDescription }}
-                            </div>
-                            {% endif %}
-                        </div>
+
+    <div id="collapse-{{ loop.first }}" class="vic-panel-collapse vic-collapse {% if loop.first %}vic-in{% endif %}">
+        <div class="vic-panel-body">
+            <div class="vic-accordion-inner">
+
+                <!-- Nav tabs -->
+                <ul class="vic-nav vic-nav-tabs" role="tablist">
+                    <li class="vic-active">
+                        <a href="#collapse-{{ loop.first }}-articles" role="tab" data-toggle="vic-tab">
+                            {{ 'modal.blog.list.articles.label'|trans({}, 'victoire') }}
+                        </a>
                     </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-        <div class="vic-alert vic-alert-info">
-            {{ 'modal.blog.list.articlesList.empty.notice'|trans({'%creationLink%' : path('victoire_blog_article_newBlogArticle', {'id' : blog.id})}, 'victoire')|raw }}
-        </div>
-        {% endif %}
+
+                    {#
+                        <li>
+                            <a href="#collapse-{{ loop.first }}-categories" role="tab" data-toggle="vic-tab">
+                                {{ 'modal.blog.list.category.label'|trans({}, 'victoire') }}
+                            </a>
+                        </li>
+                    #}
+
+                    <li>
+                        <a href="#collapse-{{ loop.first }}-settings" role="tab" data-toggle="vic-tab">
+                            {{ 'modal.blog.list.settings.label'|trans({}, 'victoire') }}
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="vic-tab-content">
+                    <div class="vic-tab-pane vic-active" id="collapse-{{ loop.first }}-articles">
+                        {% include 'VictoireBlogBundle:Blog:listItem/articles.html.twig' %}
+                    </div>
+
+                    {#
+                    <div class="vic-tab-pane vic-active" id="collapse-{{ loop.first }}-categories">
+                    </div>
+                    #}
+
+                    <div class="vic-tab-pane" id="collapse-{{ loop.first }}-settings">
+                        {% include 'VictoireBlogBundle:Blog:listItem/settings.html.twig' %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

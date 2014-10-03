@@ -42,7 +42,7 @@ class BlogController extends BasePageController
      *
      * @return JsonResponse
      */
-    public function indexAction($isHomepage = false)
+    public function indexAction(Request $request, $isHomepage = false)
     {
         $blogs = $this->getEntityManager()->getRepository('VictoireBlogBundle:Blog')
             ->getAll()->run();
@@ -51,11 +51,12 @@ class BlogController extends BasePageController
             array(
                 'html' => $this->container->get('victoire_templating')->render(
                     $this->getBaseTemplatePath() . ':index.html.twig', array(
-                        'blogs' => $blogs
+                        'blogs' => $blogs,
                     )
                 )
             )
         );
+
     }
 
     /**

@@ -9,21 +9,30 @@
 {% endblock modal_header_title %}
 
 {% block modal_body_content %}
-    <a href="{{ path('victoire_blog_new') }}" class="vic-btn vic-btn-success vic-pull-right" data-toggle="vic-modal" title="{{ ('modal.blog.button.new.title')|trans({}, 'victoire') }}">
+    <h2 id="vic-blog-heading">
+        {{ 'modal.blog.list.title'|trans({}, 'victoire') }}
+    </h2>
+
+    {% if blogs|length %}
+        <div class="vic-panel-group" id="accordion-blog">
+            {% for blog in blogs %}
+                {% include 'VictoireBlogBundle:Blog:_listItem.html.twig' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="vic-alert vic-alert-info">
+            {{ 'modal.blog.list.empty.notice'|trans({}, 'victoire') }}
+        </div>
+    {% endif %}
+
+    <a
+        href="{{ path('victoire_blog_new') }}"
+        class="vic-btn vic-btn-default"
+        data-toggle="vic-modal"
+        title="{{ ('modal.blog.button.new.title')|trans({}, 'victoire') }}"
+    >
         {{ ('modal.blog.button.new.label')|trans({}, 'victoire')|raw }}
     </a>
-    <h2 class="vic-h2">{{ 'modal.blog.list.title'|trans({}, 'victoire') }}</h2>
-    {% if blogs|length %}
-    <div class="vic-accordion" id="accordion">
-        {% for blog in blogs %}
-            {% include 'VictoireBlogBundle:Blog:_listItem.html.twig' %}
-        {% endfor %}
-     </div>
-    {% else %}
-    <div class="vic-alert vic-alert-info">
-        {{ 'modal.blog.list.empty.notice'|trans({}, 'victoire') }}
-    </div>
-    {% endif %}
 {% endblock modal_body_content %}
 
 {% block modal_footer_content %}
