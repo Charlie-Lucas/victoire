@@ -94,6 +94,10 @@
         </tbody>
     </table>
 
+    <a class="vic-btn vic-btn-success vic-btn-newArticle" data-toggle="vic-modal" href="{{ path('victoire_blog_article_newBlogArticle', {'id' : blog.id}) }}">
+        {{'modal.blog.list.articlesList.new_article'|trans({}, 'victoire')}}
+    </a>
+
     <div class="text-center vic-table-article-pager">
         <div class="vic-btn-group">
             <a href="#" class="vic-btn vic-btn-success" data-dev="static">
