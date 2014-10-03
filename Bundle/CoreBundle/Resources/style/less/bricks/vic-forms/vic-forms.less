@@ -77,6 +77,13 @@ select {
             margin-left: 5px;
         }
     }
+
+    &[id$="_day"],
+    &[id$="_month"],
+    &[id$="_year"] {
+        width: auto;
+        margin-left: 15px;
+    }
 }
 
 
@@ -262,6 +269,14 @@ select {
     }
 }
 
+.vic-radio {
+    input {
+        &[type="radio"] {
+            margin-top: 12px;
+        }
+    }
+}
+
 
 // Checkbox
 .vic-checkbox {
@@ -274,6 +289,12 @@ select {
     &:focus,
     &:checked:focus {
         outline: 0 !important;
+    }
+
+    input {
+        &[type="checkbox"] {
+            margin-top: 15px;
+        }
     }
 }
 
@@ -350,6 +371,19 @@ select {
                     border-color: @customCheckbox-hover-checked-borderColor;
                 }
             }
+        }
+    }
+}
+
+.vic-help-block {
+    display: inline-block;
+}
+
+.input_media {
+    .preview {
+        img {
+            max-width: 150px;
+            max-height: 100px;
         }
     }
 }
