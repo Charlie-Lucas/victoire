@@ -50,6 +50,32 @@ class FeatureContext extends MinkContext
     }
 
     /**
+     * @BeforeScenario @setBrowserMaxSize
+     */
+    public function setBrowserMaxSize()
+    {
+      $driver = $this->getSession()->getDriver();
+      //mac book pro 13" size; 
+      $driver->resizeWindow(2560, 1600);
+
+    }
+
+     /**
+     * @Then /^I open menu "([^"]*)"$/
+     */
+    public function iOpenMenu($name)
+    {
+        $page = $this->getMink()->getSession()->getPage();
+            if ($name = 'Page') {
+                $invoiceURL = $page->getValue('xpath','//*[@id="vic-topNavbar-left"]/li[1]/div/a');
+            } elseif ($name = 'Template') {
+                $invoiceURL = $page->getValue('xpath','//*[@id="vic-topNavbar-left"]/li[2]/div/a');
+            }
+        $this->getSession()->visit($invoiceURL);
+    }
+
+
+    /**
      * @Given /^I wait (\d+) second$/
      * @Given /^I wait (\d+) seconds$/
      */
@@ -173,4 +199,5 @@ class FeatureContext extends MinkContext
            return $this->findAfterAjax($element, $value, $timeout-100);
         }
    }
+
 }

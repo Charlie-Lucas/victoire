@@ -30,6 +30,25 @@ trait VictoireSubContextTrait
             new Step\When('I press "_submit"'),
         );
     }
+
+     /**
+     * @Given /^I create a widget "([^"]*)" with "([^"]*)" as "([^"]*)"$/
+     */
+    public function iCreateAWidgetWithAs($widgetName, $key, $value)
+    {
+        return array(
+            new Step\Then('I switch to edit mode "true"'),
+            new Step\When('I select "'.$widgetName.'"" from the "1" select of "content" slot'),
+            new Step\Then('I should see "Créer"'),
+            new Step\When('I fill in "'.$key.'" with "'.$value.'"'),
+            new Step\Then('I submit the widget'),
+            new Step\Then('I should see "Victoire !"'),
+            new Step\Then('I reload the page'),
+            new Step\Then('I should see "Le côté Obscure de la force"')
+        );
+    }
+
+
     /**
      * @Then /^I fill in wysiwyg with "([^"]*)"$/
      */
