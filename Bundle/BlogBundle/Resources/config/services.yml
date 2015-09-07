@@ -40,7 +40,7 @@ services:
     victoire_blog.article.form.type:
         class: Victoire\Bundle\BlogBundle\Form\ArticleType
         arguments:
-            - "@doctrine.orm.entity_manager"
+            - "@victoire_business_entity_page.business_entity_page_helper"
             - "%victoire_i18n.available_locales%"
             - "@request_stack"
         tags:

@@ -51,6 +51,15 @@ class BusinessEntityPageHelper
     }
 
     /**
+     * getEntityManager
+     * @return EntityManager|null
+     */
+    public function getEntityManager()
+    {
+        return $this->entityManager;
+    }
+
+    /**
      * Is the entity allowed for the business entity page
      *
      * @param BusinessEntityPagePattern                      $bepPattern
@@ -293,6 +302,49 @@ class BusinessEntityPageHelper
 
         return $viewReference['patternId'];
 
+    }
+    /**
+     * getAllowedPatterns for display an entity
+     *
+     * @param \Victoire\Bundle\PageBundle\Helper\Entity|null $entity
+     *
+     * @throws \Exception
+     * @return boolean
+     */
+    public function getAllowedPatterns($entity)
+    {
+        $this->entityManager->persist($entity);
+        $allowedPatterns = array();
+
+        //test that an entity is given
+        if ($entity === null) {
+            throw new \Exception('The entity is required.');
+        }
+        $businessEntityId = $this->businessEntityHelper->findByEntityInstance($entity)->getId();
+
+        $queryHelper = $this->queryHelper;
+        $entityPatterns = $this->entityManager->getRepository('Victoire\Bundle\BusinessEntityPageBundle\Entity\BusinessEntityPagePattern')
+            ->getInstance()->andWhere("pattern.businessEntityId = :businessEntityId")
+            ->setParameter(':businessEntityId', $businessEntityId)
+            ->getQuery()->getResult();
+        foreach ($entityPatterns as $entityPattern) {
+            $entityPatternQuery = $queryHelper->getQueryBuilder($entityPattern);
+            $entityPatternQuery->andWhere('main_item.id = :entityId')
+                ->setParameter(':entityId', $entity->getId());
+            $qb = $queryHelper->buildWithSubQuery($entityPattern, $entityPatternQuery);
+            $result = $qb
+                ->getQuery()->getResult();
+            if($result)
+            {
+                $allowedPatterns[] = $entityPattern;
+            }
+        }
+        if(count($allowedPatterns) == 0)
+        {
+            throw new \Exception(sprintf('Cannot find a BusinessEntityPagePattern that can display the requested BusinessEntity ("%s", "%s".)', get_class($entity), $businessEntityId));
+        }
+
+        return $allowedPatterns;
     }
 
     /**
