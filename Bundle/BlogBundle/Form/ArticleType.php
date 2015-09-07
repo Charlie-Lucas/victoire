@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Victoire\Bundle\BusinessEntityPageBundle\Helper\BusinessEntityPageHelper;
 use Victoire\Bundle\CoreBundle\DataTransformer\ViewToIdTransformer;
 
 /**
@@ -13,14 +14,16 @@ use Victoire\Bundle\CoreBundle\DataTransformer\ViewToIdTransformer;
  */
 class ArticleType extends AbstractType
 {
+    private $businessEntityPageHelper;
     private $entityManager;
 
     /**
      * Constructor
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(BusinessEntityPageHelper $businessEntityPageHelper)
     {
-        $this->entityManager = $entityManager;
+        $this->businessEntityPageHelper = $businessEntityPageHelper;
+        $this->entityManager = $businessEntityPageHelper->getEntityManager();
     }
 
     /**
@@ -70,16 +73,43 @@ class ArticleType extends AbstractType
                 )
             );
 
-            $articlePatterns = function(EntityRepository $repo) {
-                return $repo->getInstance()->andWhere("pattern.businessEntityId = 'article'");
-            };
+        $correctPatterns= array();
+        $articlePatterns = $this->entityManager->getRepository('Victoire\Bundle\BusinessEntityPageBundle\Entity\BusinessEntityPagePattern')
+            ->getInstance()->andWhere("pattern.businessEntityId = 'article'")
+            ->getQuery()->getResult();
+
+        foreach ($articlePatterns as $articlePattern) {
+            if($articlePattern->getQuery() != "" && $articlePattern->getQuery() != null)
+            {
+                $correctPatterns[] = $articlePattern;
+            }else{
+                $this
+                    ->entityManager->getRepository(
+                        'Victoire\Bundle\BusinessEntityPageBundle\Entity\BusinessEntityPagePattern')
+                    ->getInstance()->andWhere(str_replace('item.blog', $blog->getId(), $articlePattern->getQuery()));
+
+            }
+        }
+        if($articlePatterns > 1 )
+        {
             $builder->add('pattern', null, array(
-                'label'         => 'form.view.type.pattern.label',
-                'property'      => 'name',
-                'required'      => true,
-                'query_builder' => $articlePatterns,
-            )
-        );
+                    'empty_data'    => null,
+                    'empty_value'   => 'Choissisez une Bep',
+                    'label'         => 'form.view.type.pattern.label',
+                    'property'      => 'name',
+                    'required'      => true,
+                    'choices' => $articlePatterns,
+                )
+            );
+        }else{
+            $builder->add('pattern', 'hidden', array(
+                    'label'         => 'form.view.type.pattern.label',
+                    'property'      => 'name',
+                    'required'      => true,
+                    'data' => $articlePatterns[0],
+                )
+            );
+        }
     }
 
     /**
