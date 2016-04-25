@@ -1,0 +1,46 @@
+machine:
+  language: php
+  timezone:
+    Europe/Paris
+  hosts:
+    fr.victoire.io: 127.0.0.1
+    en.victoire.io: 127.0.0.1
+  php:
+    version: 5.6
+  services:
+    - redis
+  environment:
+    IMGUR_API_KEY: b3625162d3418ac51a9ee805b1840452
+    
+dependencies:
+  pre:
+    - echo "memory_limit = 64M" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini
+  override:
+    - npm install less
+    - mkdir fails
+    - composer config --global github-oauth.github.com $gh_auth_token
+    - COMPOSER_ROOT_VERSION=1.5 composer install --prefer-dist
+    # Prepare database
+    - php Tests/Functionnal/bin/console --env=test doctrine:database:create
+    - php Tests/Functionnal/bin/console --env=test doctrine:schema:create
+    - php Tests/Functionnal/bin/console --env=test cache:warmup
+    - php Tests/Functionnal/bin/console --env=test victoire:generate:view
+    - php Tests/Functionnal/bin/console --env=test assets:install Tests/Functionnal/web
+    - php Tests/Functionnal/bin/console --env=test bazinga:js-translation:dump
+    - php Tests/Functionnal/bin/console --env=test fos:js:dump --target="Tests/Functionnal/web/js/fos_js_routes_test.js"
+    - php Tests/Functionnal/bin/console --env=domain fos:js:dump --target="Tests/Functionnal/web/js/fos_js_routes_domain.js"
+    - php Tests/Functionnal/bin/console --env=test assetic:dump
+    - nohup php Tests/Functionnal/bin/console --env=test server:run -r vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/router_prod.php &
+    # Run selenium server
+    - "sh -e /etc/init.d/xvfb start"
+    - "export DISPLAY=:99.0"
+    - "wget http://selenium-release.storage.googleapis.com/2.50/selenium-server-standalone-2.50.0.jar"
+    - "nohup java -jar selenium-server-standalone-2.50.0.jar > /dev/null &"
+    - sleep 5
+
+test:
+  override:
+    - './vendor/bin/behat'
+    - 'phpunit --coverage-text'
+    - vendor/lakion/mink-debug-extension/travis/tools/upload-textfiles "fails/*.log"
+    - vendor/lakion/mink-debug-extension/travis/tools/upload-screenshots "fails/*.png"
