@@ -9,6 +9,7 @@ services:
 
 env:
   - IMGUR_API_KEY=b3625162d3418ac51a9ee805b1840452
+  - SYMFONY__DATABASE_USER=travis
 
 addons:
   hosts:
