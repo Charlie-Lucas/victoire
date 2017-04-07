@@ -61,6 +61,16 @@ class BlogController extends BasePageController
             ], $data);
         }
 
+
+        // Form SUBMIT event was execute after setData, so we doesn't have good blog value if we submit only new locale
+        if ($chooseBlogForm->isSubmitted()){
+            $blog = $parameters['blog'];
+            $blogs = $this->getDoctrine()->getRepository('VictoireBlogBundle:Blog')->joinTranslations($parameters['locale'])->getInstance()->getQuery()->getResult();
+            if (!in_array($blog, $blogs)) {
+                $parameters['blog'] = reset($blogs);
+            }
+        }
+
         return new JsonResponse(
             [
                 'html' => $this->container->get('templating')->render(
